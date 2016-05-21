@@ -1,0 +1,34 @@
+%--------------------------------------------------------------------------
+% S3 Simulation Parameters
+%
+% IMPORTANT: the format should regidliy follow the template. No blank lines allowed.
+% 
+% PATH		[Path to the data folder]
+% SCHEDULER 	[SRPT, PS, FSP, FCFS]
+% SPEEDSCALER 	[TYPE		PARAMETER(S)
+%		 SingleSpeed	SPEED			BASESPEED
+%		 CoupledSpeed	TYPE[INVERSE, ?]	BASESPEED
+%		 ShadowSpeed	SCHEDULERTYPE		BASESPEED
+%		 ExternalSpeed	FILE			BASESPEED	
+%		]
+% POWERFUNCTION [TYPE	PARAMETER(S)	
+%		 ALPHA	ALPHAVALUE
+%		 ?
+%		]
+% WORKLOAD	[TYPE		PARAMETER(S)	
+%		 FILE		FILENAME	MAX_NUMBER_JOBS
+%		 GENERATOR	ARRIVAL_MU	JOBSIZE_MU	MAX_NUMBER_JOBS
+%		]
+% LOGGER	[TYPE		PARAMETER(S)
+%		 BasicLoger	TYPE[VERBOSE, CONCISE]	TIME[PROMTWRITE, DELAYEDWRITE]
+%		 ?
+%		]
+% PROBES	ROUNDS		STEP		SMALLEST	LARGEST
+%--------------------------------------------------------------------------
+PATH		..\\..\\data\\
+SCHEDULER	PS
+SPEEDSCALER	CoupledSpeed	INV	100
+POWERFUNCTION	ALPHA		2
+WORKLOAD	FILE		WL_GEN-Size-100000---ArrMu-1---SizeMu-80-M.dat	1000
+LOGGER		BasicLogger	CONCISE		DELAYEDWRITE
+PROBES		100		10		1		5000
