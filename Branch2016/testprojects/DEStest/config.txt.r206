@@ -1,0 +1,39 @@
+%--------------------------------------------------------------------------
+% S3 Simulation Parameters
+%
+% IMPORTANT: the format should regidliy follow the template. No blank lines allowed.
+% 
+% PATH		[Path to the data folder]
+% SCHEDULER 	[SRPT, PS, FSP, FCFS]
+% SPEEDSCALER 	[TYPE		PARAMETER(S)
+%		 SingleSpeed	SPEED			BASESPEED
+%		 CoupledSpeed	TYPE[INV, ?]		BASESPEED
+%		 ShadowSpeed	SCHEDULERTYPE		BASESPEED
+%		 ExternalSpeed	FILE			BASESPEED	
+%		 LRPTSpeed	TYPE[LRPT]		BASESPEED
+%		 RandomSpeed	TYPE[RND]		BASESPEED
+%		]
+% POWERFUNCTION [TYPE	PARAMETER(S)	
+%		 ALPHA	ALPHAVALUE
+%		 ?
+%		]
+% WORKLOAD	[TYPE		PARAMETER(S)	
+%		 FILE		MAX_NUMBER_JOBS 	FILENAME
+%		 EXPONENTIAL	MAX_NUMBER_JOBS		ARRIVAL_MU	JOBSIZE_MU	
+%		 PARETO 	MAX_NUMBER_JOBS		ARRIVAL_MU	ALPHA		
+%		 CUSTOM 	MAX_NUMBER_JOBS		ARRIVAL_MU	JOBOFSIZEONE_COUNT		
+%		]
+% LOGGER	[TYPE		PARAMETER(S)
+%		 BasicLoger	TYPE[VERBOSE, CONCISE]	TIME[PROMTWRITE, DELAYEDWRITE]
+%		 ?
+%		]
+% PROBES	ROUNDS		STEP		SMALLEST	LARGEST
+% <blank line>
+%--------------------------------------------------------------------------
+PATH		..\\..\\data\\
+SCHEDULER	LRPT
+SPEEDSCALER	CoupledSpeed	INV		1
+POWERFUNCTION	ALPHA		2
+WORKLOAD	PARETO		100		1		1
+LOGGER		BasicLogger	CONCISE		DELAYEDWRITE
+PROBES		300		2		1		50
