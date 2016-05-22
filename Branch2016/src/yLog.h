@@ -22,6 +22,7 @@
 		static bool clearLogFile (int channel);
 		static int setUTCOffset (int minutes);	// A value of -24 * 60 causes localtime() to be used instead of gmtime()
 		static bool flushall();
+		static bool closeLogFile(int channel);
 
 		static int log (int channel, const char * fmt, ...);
 		static int logtime (int channel, const char * functionname, const char * fmt, ...);

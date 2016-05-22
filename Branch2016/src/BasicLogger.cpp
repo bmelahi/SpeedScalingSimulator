@@ -64,6 +64,7 @@ BasicLogger::BasicLogger(string debugmode, std::string writemode, string path, s
 	yLog::setLogFile("simparam.txt", SIMPARAMLOG);
 	yLog::setLogFile("meanzlog.txt", MEANZLOG);
 	yLog::setLogFile("queuedump.txt", QUEUEDUMP);
+	yLog::setLogFile("queuedump.txt", QUEUEDUMP);
 
 	if (inDebugMode_m)
 		yLog::setLogFile("debuglog.txt", DEBUGLOG);
