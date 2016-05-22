@@ -71,6 +71,7 @@ bool ProbeSetting::run() {
 		);
 
 	double workload_sim_time = roundZero.run();
+	yLog::flushall();
 	delete rzLogger;
 
 	double maxProbeSimLength = 0;

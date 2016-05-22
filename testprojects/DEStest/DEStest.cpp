@@ -83,7 +83,7 @@ int main (int argc, int* argv) {
 		yLog::logtime(Logfile_Type::PROGRESSLOG, __FUNCTION__, "Done!");
 		cout << "Finished S3. Enjoy hours of post porcessing!" << endl;
 		yLog::flushall();
-		createProbeAvgFile();
+		//createProbeAvgFile();
 		//fixbyteprofile();
 		//createBusyPeriodReport(config);
 		
@@ -116,7 +116,6 @@ int main (int argc, int* argv) {
 
 
 bool createProbeAvgFile() {
-	/*yLog::closeLogFile(PROBEREPORTLOG);*/
 	ifstream fin (yLog::getLogFile(PROBEREPORTLOG));
 	FILE * of = fopen ("probeaverages.txt", "wt");
 	fprintf(of, " probe-Size \t avg-Energy \t avg-ExecTime \t avg-RespTime \t avg-Slowdown\n");
@@ -161,6 +160,7 @@ bool createProbeAvgFile() {
 
 //----------------------------------------------------------------------
 // Fix workloadbyteprofile
+// FIXME Already fixed in the logger, this should be removed.
 
 void fixbyteprofile() {
 	ifstream originalbytes(yLog::getLogFile(BYTELOG));

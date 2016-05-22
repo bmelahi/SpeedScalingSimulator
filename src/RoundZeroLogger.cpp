@@ -48,7 +48,7 @@ RoundZeroLogger::RoundZeroLogger(string debugmode, std::string writemode)
 	// Set the loggers based on the mode 
 	//if (inDebugMode_m) {
 		yLog::setLogFile("workloadreport.txt", WLREPORTLOG);
-		yLog::setLogFile("workloadbyteprofile.txt", BYTELOG);
+		yLog::setLogFile("byteprofile.txt", BYTELOG);
 		yLog::setLogFile("speedprofile.txt", SPEEDLOG);
 		yLog::setLogFile("jobcountprofile.txt", JOBCOUNTLOG);
 	//}
@@ -96,11 +96,13 @@ string RoundZeroLogger::toString() {
 void RoundZeroLogger::arrival_handler(ArrivalEvent * e) {
 	jobCount_m++;
 	// yLog::log(JOBCOUNTLOG, " Timestamp  \t Job Count in System");
-	yLog::log(JOBCOUNTLOG, "%10f \t %10d", e->time, jobCount_m);
+	yLog::log(JOBCOUNTLOG, "%10.10f \t %10d", e->time, jobCount_m);
 
+	// Log the current byte count before showing the increase in bytes.
+	yLog::log(BYTELOG, "%10.10f \t %10.10f", e->time, byteCount_m);
 	byteCount_m += e->job_m.getSize();
 	//yLog::log(BYTELOG, " Timestamp  \t Bytes In System");
-	yLog::log(BYTELOG, "%10f \t %10f", e->time, byteCount_m);
+	yLog::log(BYTELOG, "%10.10f \t %10.10f", e->time, byteCount_m);
 }
 
 //----------------------------------------------------------------------
@@ -119,7 +121,7 @@ void RoundZeroLogger::departure_handler(DepartureEvent * e, Job * job) {
 
 	jobCount_m--;
 	// yLog::log(JOBCOUNTLOG, " Timestamp  \t Job Count in System");
-	yLog::log(JOBCOUNTLOG, "%10f \t %10d", e->time, jobCount_m);
+	yLog::log(JOBCOUNTLOG, "%10.10f \t %10d", e->time, jobCount_m);
 }
 
 //----------------------------------------------------------------------
@@ -127,7 +129,7 @@ void RoundZeroLogger::departure_handler(DepartureEvent * e, Job * job) {
 // Handles a speed-change event
 void RoundZeroLogger::speedchange_handler(double time, double newspeed) {
 	if (prevSpeed_m != newspeed) {
-		yLog::log(SPEEDLOG, "%10f \t %10f", prevTime_m, newspeed);
+		yLog::log(SPEEDLOG, "%10.10f \t %10.10f", prevTime_m, newspeed);
 	}
 
 	// ? Debug required. Changed after PEVA submission. The following two assigments where taken out of the if.
@@ -159,7 +161,7 @@ void RoundZeroLogger::execution_handler(std::vector<unsigned long> & jobs, std::
 	else
 			zeroRemaining_m = false;
 	//yLog::log(BYTELOG, " Timestamp  \t Bytes In System");
-	yLog::log(BYTELOG, "%10f \t %10f", time2, byteCount_m);
+	yLog::log(BYTELOG, "%10.10f \t %10.10f", time2, byteCount_m);
 }
 		
 

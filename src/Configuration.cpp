@@ -91,9 +91,11 @@ DESLogger * Configuration::configurationReader(string conf_file) {
 			 cout << line << endl;
 		}
 		else if (key == "WORKLOAD") {
-			 string type, maxN;
-			  tokenizer >> type >> maxN;
-			 simName_m+= string("-") + type + string("-") + maxN + string("-");
+			 string type, maxN, param1, param2;
+			 tokenizer >> type >> maxN >> param1 >> param2;
+			 //simName_m+= string("-") + type + string("-") + maxN + string("-");
+			 simName_m += string("-") + type + string("-") + maxN + string("-") 
+				 + param1 + string("-") + param2 + string("--");
 			 WORKLOAD_m = line;
 			 cout << line << endl;
 		}
