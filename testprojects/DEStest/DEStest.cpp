@@ -116,6 +116,7 @@ int main (int argc, int* argv) {
 
 
 bool createProbeAvgFile() {
+	/*yLog::closeLogFile(PROBEREPORTLOG);*/
 	ifstream fin (yLog::getLogFile(PROBEREPORTLOG));
 	FILE * of = fopen ("probeaverages.txt", "wt");
 	fprintf(of, " probe-Size \t avg-Energy \t avg-ExecTime \t avg-RespTime \t avg-Slowdown\n");

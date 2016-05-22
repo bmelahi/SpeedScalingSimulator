@@ -58,6 +58,21 @@ bool yLog::clearLogFile (int channel)
 
 //----------------------------------------------------------------------
 
+//FIXME
+bool yLog::closeLogFile(int channel)
+{
+	if (channel < 0 || channel >= MaxLogChannels)
+		return false;
+
+	if (logf == NULL)
+		return false;
+	fclose(logfilepointer[channel]);
+	return true;
+}
+//FIXME
+
+//----------------------------------------------------------------------
+
 bool yLog::flushall ()
 {
 	for (int i = 0; i < MaxLogChannels; i++) {
