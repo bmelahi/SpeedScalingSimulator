@@ -87,7 +87,10 @@ DESLogger * Configuration::configurationReader(string conf_file) {
 			 cout << line << endl;
 		}
 		else if (key == "POWERFUNCTION") {
+			 string type, param;
+			 tokenizer >> type >> param;
 			 POWERFUNCTION_m = line;
+			 simName_m += string("-") + type + string("-") + param + string("-");
 			 cout << line << endl;
 		}
 		else if (key == "WORKLOAD") {
