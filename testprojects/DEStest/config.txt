@@ -31,9 +31,9 @@
 % <blank line>
 %--------------------------------------------------------------------------
 PATH		..\\..\\data\\
-SCHEDULER	SRPT
+SCHEDULER	PS
 SPEEDSCALER	CoupledSpeed	INV 		1
 POWERFUNCTION	ALPHA		2
-WORKLOAD	PARETO		10000		1		2.2
+WORKLOAD	PARETO		100000		64		2.2
 LOGGER		BasicLogger	CONCISE		PROMTWRITE
-PROBES		300		2		1		50
+PROBES		100		50		1		260
