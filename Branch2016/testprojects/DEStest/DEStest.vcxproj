@@ -96,6 +96,7 @@
     <ClCompile Include="..\..\src\PRandomGen.cpp" />
     <ClCompile Include="..\..\src\ProbeSetting.cpp" />
     <ClCompile Include="..\..\src\PS.cpp" />
+    <ClCompile Include="..\..\src\PSBS.cpp" />
     <ClCompile Include="..\..\src\RandomSpeed.cpp" />
     <ClCompile Include="..\..\src\RoundZeroLogger.cpp" />
     <ClCompile Include="..\..\src\ShadowSpeed.cpp" />
@@ -128,6 +129,7 @@
     <ClInclude Include="..\..\src\PRandomGen.h" />
     <ClInclude Include="..\..\src\ProbeSetting.h" />
     <ClInclude Include="..\..\src\PS.h" />
+    <ClInclude Include="..\..\src\PSBS.h" />
     <ClInclude Include="..\..\src\RandomSpeed.h" />
     <ClInclude Include="..\..\src\RoundZeroLogger.h" />
     <ClInclude Include="..\..\src\Scheduler.h" />

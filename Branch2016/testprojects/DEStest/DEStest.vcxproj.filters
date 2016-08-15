@@ -99,6 +99,9 @@
     <ClCompile Include="..\..\src\SJF.cpp">
       <Filter>commonsrc</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\PSBS.cpp">
+      <Filter>commonsrc</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\DES.h">
@@ -195,6 +198,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\SJF.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\PSBS.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

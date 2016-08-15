@@ -4,7 +4,7 @@
 % IMPORTANT: the format should regidliy follow the template. No blank lines allowed.
 % 
 % PATH		[Path to the data folder]
-% SCHEDULER 	[SRPT, PS, FSP, FCFS, SJF]
+% SCHEDULER 	[SRPT, PS, FSP, FCFS, SJF, PSBS]
 % SPEEDSCALER 	[TYPE		PARAMETER(S)
 %		 SingleSpeed	SPEED			BASESPEED
 %		 CoupledSpeed	TYPE[INV, ?]		BASESPEED
@@ -31,9 +31,9 @@
 % <blank line>
 %--------------------------------------------------------------------------
 PATH		..\\..\\data\\
-SCHEDULER	PS
-SPEEDSCALER	CoupledSpeed	INV 		1
+SCHEDULER	PSBS
+SPEEDSCALER	ShadowSpeed	PS 		1
 POWERFUNCTION	ALPHA		2
-WORKLOAD	PARETO		1000000		16		1.1
+WORKLOAD	EXPONENTIAL	100		1		1
 LOGGER		BasicLogger	CONCISE		PROMTWRITE
 PROBES		0		2		1		50
