@@ -159,6 +159,12 @@ void DES::scheduler_handler(Event * e) {
 		Event * newEvent = scheduler_m->bonusevent_handler((SchedulerEvent *)e, speedscaler_m->getExSpeed(e->time));
 		if (newEvent != NULL)
 			events_q.push(newEvent);
+
+		// FIXME ** Put the next departure on the queue : had to add this action to the DES for PSBS, 
+		// TODO : need to be able to return multiple events as a result of handling one event.
+		newEvent = scheduler_m->nextDeparture(speedscaler_m->getExSpeed(e->time), e->time);
+		if (newEvent != NULL)
+			events_q.push(newEvent);
 	}
 
 	// Check if this is a valid scheduler event for the speedscaler (valid scheduler events for speed scaler have odd validIDS)

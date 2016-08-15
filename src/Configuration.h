@@ -30,6 +30,7 @@
 	#include "SRPT.h"
 	#include "LRPT.h"
 	#include "FCFS.h"
+	#include "PSBS.h"
 	#include "SJF.h"
 	#include "FSP.h"
 	#include "PS.h"

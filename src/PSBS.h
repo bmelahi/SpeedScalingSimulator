@@ -87,7 +87,7 @@
 		Job * exJob_m;		// The job under execution
 		PS * vPS_m;			// The virtual PS
 		PS * latePS_m;			// The PS scheduler for late jobs
-		bool haveLateJobs_m;	// Indicates if PSBS is working on late jobs.
+		unsigned int numberOfLateJobs_m;	// Indicates if PSBS is working on late jobs.
 		//std::set<Job *, CompareJobPS> jobs_q; // the sorted queue, sorted based on job sizes
 
 	private:

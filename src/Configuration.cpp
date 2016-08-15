@@ -176,6 +176,10 @@ Scheduler * Configuration::SchedulerFactory(std::string s) {
 		return obj;
 	}
 
+	if (type == "PSBS") {
+		obj = new PSBS();
+		return obj;
+	}
 	//if (type == "") {
 	//	return obj;
 	//}
