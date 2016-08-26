@@ -23,6 +23,7 @@
 	#include "SingleSpeed.h"
 	#include "CoupledSpeed.h"
 	#include "ShadowSpeed.h"
+	#include "ShadowSpeedEstimateSize.h"
 	#include "LRPTSpeed.h"
 	#include "RandomSpeed.h"
 

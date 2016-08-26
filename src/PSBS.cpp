@@ -1,5 +1,5 @@
 /***
-* SRPT.cpp - implementation of SRPT Scheduler class
+* PSBS.cpp - implementation of PSBS Scheduler class
 *
 *       Written by Maryam Elahi
 *		Last (remembered) updated: Nov, 2012
@@ -66,16 +66,17 @@ string PSBS::toString() {
 
 // Handles an arrival event
 bool PSBS::arrival_handler(ArrivalEvent * e) {
+	// For vPS, pass the job with size and remsize set the estimate 
+	// remsize is the estimate, getSize() retunrs the actual size here.
 	Job tempjob = Job(e->job_m.getArrival(), e->job_m.getID(), e->job_m.remsize_m, e->job_m.getDeadline());
 	ArrivalEvent tempevent(e->time, e->type, e->job_id, tempjob, e->validId_m);	
-	e->job_m.remsize_m = e->job_m.getSize();
-
 	vPS_m->arrival_handler(&tempevent);
 
-	bool contextSwitch = false;
-
 	Job * newjob = new Job(e->job_m);
+	newjob->remsize_m = newjob->getSize();
 
+	bool contextSwitch = false;
+	
 	if (numberOfLateJobs_m > 0) {
 	// PSBS is currenlty busy with the late jobs. no context switch
 		jobs_q.push(newjob); 

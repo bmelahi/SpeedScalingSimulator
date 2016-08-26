@@ -222,6 +222,14 @@ SpeedScaler * Configuration::SpeedScalerFactory(std::string s, std::string power
 		return obj;
 	}
 
+	if (type == "ShadowSpeedEstimateSize") {
+		string shadowShedulerType;
+		double basespeed;
+		ss >> shadowShedulerType >> basespeed;
+		obj = new ShadowSpeed(basespeed, PowerFunctionFactory(powerStr), SchedulerFactory(shadowShedulerType));
+		return obj;
+	}
+
 	if (type == "LRPTSpeed") {
 		string functionType;
 		double basespeed;

@@ -100,6 +100,7 @@
     <ClCompile Include="..\..\src\RandomSpeed.cpp" />
     <ClCompile Include="..\..\src\RoundZeroLogger.cpp" />
     <ClCompile Include="..\..\src\ShadowSpeed.cpp" />
+    <ClCompile Include="..\..\src\ShadowSpeedEstimateSize.cpp" />
     <ClCompile Include="..\..\src\SingleSpeed.cpp" />
     <ClCompile Include="..\..\src\SJF.cpp" />
     <ClCompile Include="..\..\src\SRPT.cpp" />
@@ -134,6 +135,7 @@
     <ClInclude Include="..\..\src\RoundZeroLogger.h" />
     <ClInclude Include="..\..\src\Scheduler.h" />
     <ClInclude Include="..\..\src\ShadowSpeed.h" />
+    <ClInclude Include="..\..\src\ShadowSpeedEstimateSize.h" />
     <ClInclude Include="..\..\src\SingleSpeed.h" />
     <ClInclude Include="..\..\src\SJF.h" />
     <ClInclude Include="..\..\src\SpeedScaler.h" />
