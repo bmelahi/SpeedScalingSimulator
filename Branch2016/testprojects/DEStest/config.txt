@@ -31,9 +31,9 @@
 % <blank line>
 %--------------------------------------------------------------------------
 PATH		..\\..\\data\\
-SCHEDULER	PSBS
+SCHEDULER	FSP
 SPEEDSCALER	ShadowSpeed	PS 		1
 POWERFUNCTION	ALPHA		2
-WORKLOAD	EXPONENTIAL	100		1		1
+WORKLOAD	EXPONENTIAL	1000		1		1
 LOGGER		BasicLogger	CONCISE		PROMTWRITE
-PROBES		0		2		1		50
+PROBES		100		2		1		50
