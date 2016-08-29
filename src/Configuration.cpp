@@ -180,6 +180,10 @@ Scheduler * Configuration::SchedulerFactory(std::string s) {
 		obj = new PSBS();
 		return obj;
 	}
+	if (type == "FSPEI") {
+		obj = new FSPEI();
+		return obj;
+	}
 	//if (type == "") {
 	//	return obj;
 	//}
