@@ -28,6 +28,7 @@
 	#include "RandomSpeed.h"
 
 	#include "Scheduler.h"
+	#include "FSPEI.h"
 	#include "SRPT.h"
 	#include "LRPT.h"
 	#include "FCFS.h"

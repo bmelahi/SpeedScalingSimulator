@@ -89,6 +89,7 @@
     <ClCompile Include="..\..\src\DES.cpp" />
     <ClCompile Include="..\..\src\FCFS.cpp" />
     <ClCompile Include="..\..\src\FSP.cpp" />
+    <ClCompile Include="..\..\src\FSPEI.cpp" />
     <ClCompile Include="..\..\src\GlobalsAndTypes.cpp" />
     <ClCompile Include="..\..\src\Job.cpp" />
     <ClCompile Include="..\..\src\LRPT.cpp" />
@@ -122,6 +123,7 @@
     <ClInclude Include="..\..\src\Event.h" />
     <ClInclude Include="..\..\src\FCFS.h" />
     <ClInclude Include="..\..\src\FSP.h" />
+    <ClInclude Include="..\..\src\FSPEI.h" />
     <ClInclude Include="..\..\src\GlobalsAndTypes.h" />
     <ClInclude Include="..\..\src\Job.h" />
     <ClInclude Include="..\..\src\LRPT.h" />

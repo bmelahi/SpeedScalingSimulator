@@ -105,6 +105,9 @@
     <ClCompile Include="..\..\src\ShadowSpeedEstimateSize.cpp">
       <Filter>commonsrc</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\FSPEI.cpp">
+      <Filter>commonsrc</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\DES.h">
@@ -207,6 +210,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\ShadowSpeedEstimateSize.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\FSPEI.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
