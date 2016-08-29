@@ -31,9 +31,9 @@
 % <blank line>
 %--------------------------------------------------------------------------
 PATH		..\\..\\data\\
-SCHEDULER	FSP
-SPEEDSCALER	ShadowSpeed	PS 		1
+SCHEDULER	SRPT
+SPEEDSCALER	CoupledSpeed	INC 		1
 POWERFUNCTION	ALPHA		2
-WORKLOAD	EXPONENTIAL	1000		1		1
+WORKLOAD	EXPONENTIAL	10000		1		1
 LOGGER		BasicLogger	CONCISE		PROMTWRITE
 PROBES		100		2		1		50
