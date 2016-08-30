@@ -35,7 +35,7 @@ string FSPEI::name_s = "FSPEI";
 //----------------------------------------------------------------------
 
 FSPEI::FSPEI() {
-	vPS_m = new PS();
+	vPS_m = new PSE();
 	exJob_m = NULL;
 }
 
@@ -63,10 +63,12 @@ string FSPEI::toString() {
 
 // Handles an arrival event
 bool FSPEI::arrival_handler(ArrivalEvent * e) {
+	Job * newjob = new Job(e->job_m);
+
+	// Set the remaining size to the estimated size and then pass it on to vPS
+	e->job_m.remsize_m = e->job_m.getEstimatedSize();
 	vPS_m->arrival_handler(e);
 	bool contextSwitch = false;
-
-	Job * newjob = new Job(e->job_m);
 
 	// If the new arrival is the next departure under PS, 
 	// -set isBeingExecuted
@@ -123,23 +125,18 @@ Job * FSPEI::departure_handler(DepartureEvent * e) {
 	exJob_m = NULL;
 	vPS_m->setFinish(completedJob->getID(), e->time);
 
+	if (jobs_q.empty()) {
+		// End of busy period under FSP, should clear vPS
+		vPS_m->clearQueue(e->time);
+		nextValidSchedulerID();
+	}
+
 	// Find the next job to execute
 	unsigned long nextJob = vPS_m->getExJob(e->time);
 	if (nextJob == INVALIDID && !jobs_q.empty())
 		yLog::logtime(ERRORLOG, __FUNCTION__,
 		"PS getExJob returned INVALIDID, while there are %d jobs in FSPEI!", jobs_q.size());
 
-	//if (jobs_q.size() == 1) {
-	//	if (jobs_q.top()->getID() != nextJob)
-	//		yLog::logtime(ERRORLOG, __FUNCTION__, 
-	//			"The remaining job %d does not match the next job from virtual PS: %d", jobs_q.top()->getID(), nextJob);
-
-	//	// Put the next job under execution, remove it from the jobs_q
-	//	exJob_m = jobs_q.top();
-	//	jobs_q.pop();
-	//	exJob_m->isBeingExecuted_m = true;
-	//}
-	//else { // Terrible performance!? if sorted shouldn't be that bad
 	vector<Job*> sack;	// Put removed jobs in the sack
 	while (!jobs_q.empty()) {
 		if (jobs_q.top()->getID() == nextJob) {
@@ -305,18 +302,22 @@ Event * FSPEI::bonusevent_handler(SchedulerEvent * e, double speed) {
 	// If not, there is a size estimation error. Reinsert the job back into vPS, with size (?)
 
 	if (completedJob != NULL) {
+		bool isLate = false;
+		if (exJob_m != NULL && completedJob->getID() == exJob_m->getID())
+			isLate = true;
+		else {
+		}
 		if (exJob_m != NULL && completedJob->getID() == exJob_m->getID()) {
 			// The job that just finished under vPS has not finished under FSP. Reinsert it with original size (?), then delete completed job.
 			// FIXME : Should we check if the exJob_m is about to finish?
 				//if (!approximatelyEqual(exJob_m->remsize_m, 0))
-			completedJob->remsize_m = completedJob->getSize();
+			completedJob->remsize_m = completedJob->getEstimatedSize();
 			completedJob->isBeingExecuted_m = true;
 			completedJob->isFinished_m = false;
 
 			ArrivalEvent * vArrival = new ArrivalEvent(e->time, Event_Type::ARRIVAL, completedJob->getID(), *completedJob, 0);
 			vPS_m->arrival_handler(vArrival);
 			delete vArrival;
-
 		}
 		else {
 			// The job that just finished under vPS has already finished under FSP. Proceed with deleting the completed job.
@@ -343,7 +344,8 @@ Event * FSPEI::nextScheduler(double speed, double time) {
 		delete vdeparture;
 		return ret;
 	}
-	return NULL;
+	else 
+		return NULL;
 }
 
 //----------------------------------------------------------------------

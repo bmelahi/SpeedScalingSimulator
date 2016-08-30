@@ -67,7 +67,7 @@
 
 		bool setFinish(unsigned long id, double times);		// Set the isFinished of job with parameter id. Returns true if the job is found.
 
-	private:
+	protected:
 		std::set<Job *, CompareJobPS> jobs_q; // the sorted queue, sorted based on job sizes
 
 	private:

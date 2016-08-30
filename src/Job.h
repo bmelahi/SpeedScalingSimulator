@@ -28,7 +28,9 @@
 	public:
 		Job () : 
 		  size_m(0), 
+		  estimatedsize_m(0),
 		  remsize_m(0),
+		  estimatedremsize_m(0),
 		  id_m (0), 
 		  arrival_m(0), 
 		  deadline_m(0), 
@@ -43,7 +45,9 @@
 		  
   		Job (double arrival, unsigned long id, double size) : 
 		  size_m(size), 
+		  estimatedsize_m(size),
 		  remsize_m(size),
+		  estimatedremsize_m(size),
 		  id_m (id), 
 		  arrival_m(arrival), 
 		  deadline_m(0), 
@@ -59,7 +63,9 @@
 
 		Job (double arrival, unsigned long id, double size, double deadline) : 
 		  size_m(size), 
+		  estimatedsize_m(size),
 		  remsize_m(size),
+		  estimatedremsize_m(size),
 		  id_m (id), 
 		  arrival_m(arrival), 
 		  deadline_m(deadline), 
@@ -72,6 +78,23 @@
 		  energyConsumed_m(0)
 		  {}
 
+		Job(double arrival, unsigned long id, double size, double deadline, double estimated) :
+			size_m(size),
+			estimatedsize_m(estimated),
+			remsize_m(size),
+			estimatedremsize_m(estimated),
+			id_m(id),
+			arrival_m(arrival),
+			deadline_m(deadline),
+			departure_m(0),
+			isProbe_m(false),
+			isFinished_m(false),
+			isBeingExecuted_m(false),
+			responsetime_m(0),
+			executiontime_m(0),
+			energyConsumed_m(0)
+		{}
+
 //----------------------------------------------------------------------
 // Methods and Operators:
 //----------------------------------------------------------------------
@@ -82,6 +105,7 @@
 		void set_probe(unsigned long probe_id);
 
 		double getSize() const {return size_m;}
+		double getEstimatedSize() const {return estimatedsize_m;}
 		unsigned long getID() const {return id_m;}
 		unsigned long getProbeID() const {return probeid_m;}
 		double getArrival() const {return arrival_m;}
@@ -92,14 +116,16 @@
 	// Member variables:
 //----------------------------------------------------------------------
 	private:
-		double size_m;					// Job size
+		double size_m;					// Job size (real size)
+		double estimatedsize_m;			// Job size estimation
 		unsigned long id_m;				// Job id
 		double arrival_m;				// The arrival time
 		double deadline_m;				// The deadline (0 if not valid)
 		bool isProbe_m;				
 
 	public:
-		double remsize_m;				// The remaining work of the job
+		double remsize_m;				// The remaining work of the job (of the real size)
+		double estimatedremsize_m;		// The remaining work based on the job size estimation
 		double departure_m;				// The actual departure time
 	
 		bool isFinished_m;				// ?

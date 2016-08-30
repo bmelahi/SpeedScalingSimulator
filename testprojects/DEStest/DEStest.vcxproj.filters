@@ -108,6 +108,12 @@
     <ClCompile Include="..\..\src\FSPEI.cpp">
       <Filter>commonsrc</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\WLGenParetoEstimates.cpp">
+      <Filter>commonsrc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\PSE.cpp">
+      <Filter>commonsrc</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\DES.h">
@@ -213,6 +219,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\FSPEI.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\WLGenParetoEstimates.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\PSE.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

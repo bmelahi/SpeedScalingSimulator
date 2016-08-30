@@ -102,6 +102,12 @@ DESLogger * Configuration::configurationReader(string conf_file) {
 			 WORKLOAD_m = line;
 			 cout << line << endl;
 		}
+		else if (key == "ESTIMATION") {
+			string type1, type2, param1, param2;
+			tokenizer >> type1 >> type2 >> param1 >> param2;
+			ESTIMATION_m = line;
+			cout << line << endl;
+		}
 		else if (key == "LOGGER") {
 			 LOGGER_m = line;
 			 cout << line << endl;
@@ -307,6 +313,14 @@ WorkloadGenerator * Configuration::WorkloadGeneratorFactory(std::string s) {
 		double batchCountMean, batchIntervalMean, size;
 		ss >> maxN >> batchCountMean >> batchIntervalMean >> size;
 		obj = new WLGenBatchExponential(batchCountMean, batchIntervalMean, size, maxN);
+		return obj;
+	}
+
+	if (type == "PARETOE") {
+		unsigned long maxN;
+		double arrival, alpha;
+		ss >> maxN >> arrival >> alpha;
+		obj = new WLGenParetoEstimates(arrival, alpha, maxN);
 		return obj;
 	}
 	//if (type == "") {
