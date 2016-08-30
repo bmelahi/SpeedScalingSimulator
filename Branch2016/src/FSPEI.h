@@ -17,7 +17,7 @@
 #include <queue>
 #include <string>
 
-#include "PS.h"
+#include "PSE.h"
 #include "Event.h"
 #include "DESLogger.h"
 #include "Scheduler.h"
@@ -85,7 +85,7 @@ private:
 	//std::set<Job *, CompareJobFSPEI> jobs_q; // the sorted queue, sorted based on job sizes
 	std::priority_queue<Job*, std::vector<Job*>, CompareJobFSPEI> jobs_q;		// All jobs in the system excluding the exJob_m
 	Job * exJob_m;		// The job under execution
-	PS * vPS_m;			// The virtual PS
+	PSE * vPS_m;			// The virtual PS
 
 private:
 	static string name_s;

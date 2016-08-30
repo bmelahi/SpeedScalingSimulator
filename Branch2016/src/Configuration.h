@@ -44,6 +44,7 @@
 	#include "WorkLoadFileWrapper.h"
 	#include "WLGenExponential.h"
 	#include "WLGenPareto.h"
+	#include "WLGenParetoEstimates.h"
 	#include "WLGenCustom.h"
 	#include "WLGenBatchExponential.h"
 
@@ -83,6 +84,7 @@
 		std::string SPEEDSCALER_m;
 		std::string POWERFUNCTION_m;
 		std::string WORKLOAD_m;
+		std::string ESTIMATION_m;
 		std::string LOGGER_m;
 		std::string PROBES_m;
 		std::string PATH_m;
