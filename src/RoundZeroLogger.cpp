@@ -132,7 +132,7 @@ void RoundZeroLogger::speedchange_handler(double time, double newspeed) {
 		yLog::log(SPEEDLOG, "%10.10f \t %10.10f", prevTime_m, newspeed);
 	}
 
-	// ? Debug required. Changed after PEVA submission. The following two assigments where taken out of the if.
+	// TOFIX ? Debug required. Changed after PEVA submission. The following two assigments where taken out of the if.
 	prevTime_m = time;
 	prevSpeed_m = newspeed;
 }
