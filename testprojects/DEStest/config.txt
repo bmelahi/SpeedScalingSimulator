@@ -4,7 +4,7 @@
 % IMPORTANT: the format should regidliy follow the template. No blank lines allowed.
 % 
 % PATH		[Path to the data folder]
-% SCHEDULER 	[SRPT, PS, FSP, FCFS, SJF, PSBS, FEST [load, ESTIMATEDRANGE, LOADRANGE]]
+% SCHEDULER 	[SRPT, PS, FSP, FCFS, SJF, PSBS, FEST [load, ESTIMATEDRANGE, LOADRANGE], SEH, SEPT, SERPT, PSEPT]
 % SPEEDSCALER 	[TYPE			PARAMETER(S)
 %		 SingleSpeed			SPEED			BASESPEED
 %		 CoupledSpeed			TYPE[INV, ?]		BASESPEED
@@ -21,8 +21,10 @@
 % WORKLOAD	[TYPE		PARAMETER(S)	
 %		 FILE		MAX_NUMBER_JOBS 	FILENAME	0
 %		 EXPONENTIAL	MAX_NUMBER_JOBS		ARRIVAL_MU	JOBSIZE_MU	
-%		 PARETO 	MAX_NUMBER_JOBS		ARRIVAL_MU	ALPHA		
-%		 CUSTOM 	MAX_NUMBER_JOBS		ARRIVAL_MU	JOBOFSIZEONE_COUNT		
+%		 PARETO 	MAX_NUMBER_JOBS		ARRIVAL_MU	ALPHA
+%		 PARETOE	MAX_NUMBER_JOBS		ARRIVAL_MU	ALPHA
+%		 WEIBULL	MAX_NUMBER_JOBS		LOAD		SHAPE	JOB_SIZE_MU	ERROR_MEAN	STD.DEVIATION
+%		 CUSTOM 	MAX_NUMBER_JOBS		ARRIVAL_MU	JOBOFSIZEONE_COUNT
 %		]
 % ESTIMATION	[TYPE		PARAMETER(S)	
 %		 NOERROR	[ADDITIVE, MULTIPLICATIVE]	MU	SIGMA	
@@ -42,3 +44,14 @@ POWERFUNCTION	ALPHA		2
 WORKLOAD	EXPONENTIAL	100000		0.80		1
 LOGGER		BasicLogger	CONCISE		PROMTWRITE
 PROBES		300		2		1		50
+%--------------------------------------------------------------------------
+% Example: to run Mithun P's SEH policy against a Weibull-distributed
+% workload, comment out the four active lines above and uncomment these:
+%
+% SCHEDULER	SEH
+% SPEEDSCALER	CoupledSpeed	INV	1
+% WORKLOAD	WEIBULL		10000000	1	0.25	1	0	2
+%
+% SEPT, SERPT, and PSEPT can be run the same way by substituting the
+% SCHEDULER value; see the SCHEDULER/WORKLOAD option lists above.
+%--------------------------------------------------------------------------
