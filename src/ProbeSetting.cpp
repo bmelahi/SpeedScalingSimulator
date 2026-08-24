@@ -126,13 +126,18 @@ bool ProbeSetting::runLoad() {
 
 	for (double i = 0.05; i <= 0.96; i += 0.05) {
 		stringstream wlConfig, wlModified, schedConfig, schedModified;
-		string type, configType, maxN, lambda, mu, loadParam;
-		
-		// Chaning the workload configuartion for the load level
+		string type, configType, maxN, loadParamValue, restOfWlConfig, loadParam;
+
+		// Changing the workload configuration for the load level.
+		// The workload line is "TYPE CONFIGTYPE MAXN <load-like param> <rest>" for
+		// every generator we support (EXPONENTIAL's arrival rate, PARETO's arrival
+		// rate, WEIBULL's LOAD, ...) - so read up to that param generically, swap
+		// it for the swept value i, and pass the remaining params through untouched.
 		wlConfig << config_m->getWorkloadConfig();
-		wlConfig >> type >> configType >> maxN >> lambda >> mu;
-		wlModified << type << " " << configType << " " << maxN << " " << i << " " << mu;
-		
+		wlConfig >> type >> configType >> maxN >> loadParamValue;
+		std::getline(wlConfig, restOfWlConfig);
+		wlModified << type << " " << configType << " " << maxN << " " << i << restOfWlConfig;
+
 		// For robustness comparison, uncomment the following to set the actual load and run FEST across different estimated load levels
 		// wlModified << config_m->getWorkloadConfig();
 
