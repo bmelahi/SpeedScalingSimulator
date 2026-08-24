@@ -14,20 +14,21 @@
     <ProjectGuid>{5EB36385-F3B4-437B-8EA9-4BEB15F5556B}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>DEStest</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -42,11 +43,11 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
     <IntDir>IntDir\$(Configuration)\</IntDir>
-    <OutDir>$(SolutionDir)Bin3\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)Bin\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(SolutionDir)Bin1\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)Bin\$(Configuration)\</OutDir>
     <IntDir>IntDir\$(Configuration)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -86,8 +87,10 @@
     <ClCompile Include="..\..\src\BasicLogger.cpp" />
     <ClCompile Include="..\..\src\Configuration.cpp" />
     <ClCompile Include="..\..\src\CoupledSpeed.cpp" />
+    <ClCompile Include="..\..\src\CoupledSpeedWith1Addition.cpp" />
     <ClCompile Include="..\..\src\DES.cpp" />
     <ClCompile Include="..\..\src\FCFS.cpp" />
+    <ClCompile Include="..\..\src\FEST.cpp" />
     <ClCompile Include="..\..\src\FSP.cpp" />
     <ClCompile Include="..\..\src\FSPEI.cpp" />
     <ClCompile Include="..\..\src\GlobalsAndTypes.cpp" />
@@ -120,10 +123,12 @@
     <ClInclude Include="..\..\src\BasicLogger.h" />
     <ClInclude Include="..\..\src\Configuration.h" />
     <ClInclude Include="..\..\src\CoupledSpeed.h" />
+    <ClInclude Include="..\..\src\CoupledSpeedWith1Addition.h" />
     <ClInclude Include="..\..\src\DES.h" />
     <ClInclude Include="..\..\src\DESLogger.h" />
     <ClInclude Include="..\..\src\Event.h" />
     <ClInclude Include="..\..\src\FCFS.h" />
+    <ClInclude Include="..\..\src\FEST.h" />
     <ClInclude Include="..\..\src\FSP.h" />
     <ClInclude Include="..\..\src\FSPEI.h" />
     <ClInclude Include="..\..\src\GlobalsAndTypes.h" />
@@ -153,6 +158,9 @@
     <ClInclude Include="..\..\src\WorkLoadFileWrapper.h" />
     <ClInclude Include="..\..\src\WorkLoadGenerator.h" />
     <ClInclude Include="..\..\src\yLog.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

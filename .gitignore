@@ -1,0 +1,10 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/S3Sim22/v17
+/.vs/S3Sim22/FileContentIndex
+/.vs/S3PrivateBase_FEST2022Branch/v17
+/testprojects/DEStest/IntDir/Debug
+/Bin/Release
+/testprojects/DEStest/IntDir/Release

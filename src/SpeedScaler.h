@@ -7,7 +7,7 @@
 * SpeedScaler.h - definitions/declarations for class SpeedScaler
 *
 *       Written by Maryam Elahi
-*		Last (remembered) updated: Nov 2012
+*		Last (remembered) updated: October 2016
 *
 *Purpose:
 *       This file defines the class SpeedScaler, with its members and methods.

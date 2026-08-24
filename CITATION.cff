@@ -1,0 +1,112 @@
+cff-version: 1.2.0
+message: >-
+  If you use this software in your research, please cite it using the
+  metadata below, and consider citing the related publications listed here
+  as well.
+title: "S3: Speed Scaling Simulator (SpeedScalingSimulatorV2.0)"
+type: software
+authors:
+  - family-names: Elahi
+    given-names: Maryam
+repository-code: "https://github.com/bmelahi/SpeedScalingSimulatorV2.0"
+license: MIT
+
+references:
+  - type: article
+    title: "Decoupled speed scaling: Analysis and evaluation"
+    authors:
+      - family-names: Elahi
+        given-names: Maryam
+      - family-names: Williamson
+        given-names: Carey
+      - family-names: Woelfel
+        given-names: Philipp
+    journal: "Performance Evaluation"
+    volume: "73"
+    year: 2014
+
+  - type: conference-paper
+    title: "Simulation Modeling for Speed Scaling Designs"
+    authors:
+      - family-names: Elahi
+        given-names: Maryam
+      - family-names: Williamson
+        given-names: Carey
+    conference:
+      name: "VALUETOOLS 2016"
+    year: 2016
+
+  - type: conference-paper
+    title: "Turbocharged Speed Scaling: Analysis and Evaluation"
+    authors:
+      - family-names: Elahi
+        given-names: Maryam
+      - family-names: Williamson
+        given-names: Carey
+      - family-names: Woelfel
+        given-names: Philipp
+    conference:
+      name: "MASCOTS 2014"
+    year: 2014
+
+  - type: conference-paper
+    title: "Autoscaling Effects in Speed Scaling Systems"
+    authors:
+      - family-names: Elahi
+        given-names: Maryam
+      - family-names: Williamson
+        given-names: Carey
+    conference:
+      name: "MASCOTS 2016"
+    year: 2016
+
+  - type: thesis
+    title: "Optimality and Fairness in Speed Scaling Systems"
+    authors:
+      - family-names: Elahi
+        given-names: Maryam
+    institution:
+      name: "University of Calgary"
+    year: 2017
+    notes: "PhD dissertation"
+
+  - type: conference-paper
+    title: "Control and Optimization of the SRPT Service Policy by Frequency Scaling"
+    authors:
+      - family-names: Marin
+        given-names: Andrea
+      - family-names: Mitrani
+        given-names: Isi
+      - family-names: Elahi
+        given-names: Maryam
+      - family-names: Williamson
+        given-names: Carey
+    conference:
+      name: "QEST 2018"
+    year: 2018
+
+  - type: conference-paper
+    title: "On Saturation Effects in Coupled Speed Scaling"
+    authors:
+      - family-names: Elahi
+        given-names: Maryam
+      - family-names: Williamson
+        given-names: Carey
+    conference:
+      name: "QEST 2018"
+    year: 2018
+
+  - type: article
+    title: "Frequency scaling in multilevel queues"
+    authors:
+      - family-names: Elahi
+        given-names: Maryam
+      - family-names: Marin
+        given-names: Andrea
+      - family-names: Rossi
+        given-names: Sabina
+      - family-names: Williamson
+        given-names: Carey
+    journal: "Performance Evaluation"
+    volume: "143"
+    year: 2020

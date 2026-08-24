@@ -16,6 +16,7 @@
 #include <cstdlib>
 #include <string>
 #include <iostream>
+#include <random>
 
 #include "GlobalsAndTypes.h"
 #include "PRandomGen.h"
@@ -30,6 +31,10 @@ FILE * PRandomGen::fin = NULL;
 FILE * PRandomGen::PRAND_s = NULL;
 unsigned int PRandomGen::seed_m = 1982;				// Is initialized if there is a seed.
 unsigned int PRandomGen::MAX_RAND_m = RAND_MAX + 1;			// The maximum random number
+
+
+std::default_random_engine generator;
+std::uniform_real_distribution<double> distributionUnf(0.0, 1.0);
 
 //----------------------------------------------------------------------
 
@@ -156,7 +161,8 @@ double PRandomGen::getExponential(double mean) {
 
 // Retunrs the next random number from an pareto dist with alpha
 double PRandomGen::getPareto(double alpha) {
-	double rnd = getUrandFrac();
+	//double rnd = getUrandFrac();
+	double rnd = distributionUnf(generator);
 	while (rnd == 1 || rnd == 0) {
 		//yLog::logtime(ERRORLOG, __FUNCTION__, "getUrandFrac returned %f", rnd);
 		yLog::logtime(DEBUGLOG, __FUNCTION__, "getUrandFrac returned %f", rnd);

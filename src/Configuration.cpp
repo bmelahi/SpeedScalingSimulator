@@ -190,6 +190,12 @@ Scheduler * Configuration::SchedulerFactory(std::string s) {
 		obj = new FSPEI();
 		return obj;
 	}
+	if (type == "FEST") {
+		double load;
+		ss >> load;
+		obj = new FEST(load);
+		return obj;
+	}
 	//if (type == "") {
 	//	return obj;
 	//}
@@ -221,6 +227,14 @@ SpeedScaler * Configuration::SpeedScalerFactory(std::string s, std::string power
 		double basespeed;
 		ss >> functionType >> basespeed;
 		obj = new CoupledSpeed(basespeed, PowerFunctionFactory(powerStr));
+		return obj;
+	}
+
+	if (type == "CoupledSpeedWith1Addition") {
+		string functionType;
+		double basespeed;
+		ss >> functionType >> basespeed;
+		obj = new CoupledSpeedWith1Addition(basespeed, PowerFunctionFactory(powerStr));
 		return obj;
 	}
 

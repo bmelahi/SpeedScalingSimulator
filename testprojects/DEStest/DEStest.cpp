@@ -78,6 +78,19 @@ int main (int argc, int* argv) {
 	// Setup the probesimulator
 	ProbeSetting probesim(logger, config);
 
+	/*
+	// run the probesimulator for load range
+	if (probesim.runLoad()) {
+		yLog::logtime(Logfile_Type::PROGRESSLOG, __FUNCTION__, "done!");
+		cout << "finished s3. enjoy hours of post porcessing!" << endl;
+		yLog::flushall();
+		//createProbeavgfile();
+	}
+	else {
+		yLog::logtime(Logfile_Type::PROGRESSLOG, __FUNCTION__, "failed!");
+		cout << "failed s3. enjoy hours of debugging!" << endl;
+	}
+	/*/
 	// Run the probesimulator
 	if (probesim.run()) {
 		yLog::logtime(Logfile_Type::PROGRESSLOG, __FUNCTION__, "Done!");
@@ -93,17 +106,7 @@ int main (int argc, int* argv) {
 		cout << "Failed S3. Enjoy hours of debugging!" << endl;
 	}
 
-	//// Run the probesimulator
-	//if (probesim.runLoad()) {
-	//	yLog::logtime(Logfile_Type::PROGRESSLOG, __FUNCTION__, "Done!");
-	//	cout << "Finished S3. Enjoy hours of post porcessing!" << endl;
-	//	yLog::flushall();
-	//	createProbeAvgFile();
-	//}
-	//else {
-	//	yLog::logtime(Logfile_Type::PROGRESSLOG, __FUNCTION__, "Failed!");
-	//	cout << "Failed S3. Enjoy hours of debugging!" << endl;
-	//}
+	//*/
 
 
 	// Clean up

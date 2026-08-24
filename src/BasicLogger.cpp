@@ -73,7 +73,7 @@ BasicLogger::BasicLogger(string debugmode, std::string writemode, string path, s
 	yLog::logtime(Logfile_Type::ERRORLOG, __FUNCTION__, "Setting up DES: Discrete Event Simulator. This is the error log.");
 	yLog::logtime(Logfile_Type::DEBUGLOG, __FUNCTION__, "Setting up DES: Discrete Event Simulator. This is the debug log.");
 		
-	yLog::log(PROBEREPORTLOG, " JobID \t       size \t    Arrival \t  Departure \t     Energy \t ExecutionT \t  ResponseT \t   Slowdown");
+	yLog::log(PROBEREPORTLOG, " JobID \t       size \t    Arrival \t  Departure \t     Energy \t ExecutionT \t  ResponseT \t   Slowdown \t Avg. Speed");
 	yLog::log(MEANZLOG, "      E[T] \t       E[e] \t           Z \t           N");
 	//yLog::log(QUEUEDUMP, "time a/d touched untouched queuedump: rem1 rem2 rem3... (arrival size)");
 }

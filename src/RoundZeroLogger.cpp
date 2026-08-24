@@ -45,6 +45,13 @@ RoundZeroLogger::RoundZeroLogger(string debugmode, std::string writemode)
 	inDebugMode_m = (debugmode == "VERBOSE")? true : false;
 	inPromptMode_m = (writemode == "PROMTWRITE")? true : false;
 
+	if (!inDebugMode_m) {
+		yLog::clearLogFile(WLREPORTLOG);
+		yLog::clearLogFile(BYTELOG);
+		yLog::clearLogFile(SPEEDLOG);
+		yLog::clearLogFile(JOBCOUNTLOG);
+	}
+
 	// Set the loggers based on the mode 
 	//if (inDebugMode_m) {
 		yLog::setLogFile("workloadreport.txt", WLREPORTLOG);
@@ -52,7 +59,7 @@ RoundZeroLogger::RoundZeroLogger(string debugmode, std::string writemode)
 		yLog::setLogFile("speedprofile.txt", SPEEDLOG);
 		yLog::setLogFile("jobcountprofile.txt", JOBCOUNTLOG);
 	//}
-
+	
 	yLog::logtime(Logfile_Type::PROGRESSLOG, __FUNCTION__, "----------------------------RoundZeroLogger");
 
 	yLog::logtime(Logfile_Type::ERRORLOG, __FUNCTION__, "----------------------------RoundZeroLogger");
@@ -115,7 +122,7 @@ void RoundZeroLogger::departure_handler(DepartureEvent * e, Job * job) {
 	firstNjobsLeft_m++;
 
 	if (inPromptMode_m) 
-		writeJobReport(job, WLREPORTLOG, job->getProbeID());
+		writeJobReport(job, WLREPORTLOG, job->getID());
 	else
 		completedJobs_m.push_back(job);
 

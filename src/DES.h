@@ -66,7 +66,7 @@
 		PowerFunction * P_m;
 
 		//map <unsigned long int, Job> jobs_m;		// Probably not needed.
-		priority_queue<Event, std::vector<Event*>, Event::CompareEvents> events_q;
+		priority_queue<Event*, std::vector<Event*>, Event::CompareEvents> events_q;
 
 		double exRate_m;			// Execution rate: since the previous context switch/speed change
 		unsigned long exJob_m;		// Executing job id: since the previous context switch/speed change

@@ -123,21 +123,48 @@ bool ProbeSetting::runLoad() {
 	ssConfig << config_m->getLoggerConfig();
 	ssConfig >> type >> configType >> param1 >> param2;
 	ssModifed << type << " RoundZeroLogger " << param1 << " " << param2;
-	
-	for (double i = 0.25; i <= 3; i+= 0.25) {
-		stringstream wlConfig, wlModifed;
-		string type, configType, maxN, lambda, mu;
+
+	for (double i = 0.05; i <= 0.96; i += 0.05) {
+		stringstream wlConfig, wlModified, schedConfig, schedModified;
+		string type, configType, maxN, lambda, mu, loadParam;
+		
+		// Chaning the workload configuartion for the load level
 		wlConfig << config_m->getWorkloadConfig();
 		wlConfig >> type >> configType >> maxN >> lambda >> mu;
-		wlModifed << type << " " << configType << " " << maxN <<  " " << i << " " << mu;
+		wlModified << type << " " << configType << " " << maxN << " " << i << " " << mu;
+		
+		// For robustness comparison, uncomment the following to set the actual load and run FEST across different estimated load levels
+		// wlModified << config_m->getWorkloadConfig();
+
+
+		// Changing the scheduler load level
+		schedConfig << config_m->getSchedulerConfig();
+		schedConfig >> type >> configType;
+		schedModified << type << " " << configType;
+		if (!schedConfig.eof()) {
+			schedConfig >> loadParam;
+			schedModified << " " << i;
+			if (loadParam == "ESTIMATEDRANGE") {
+				wlModified.str(config_m->getWorkloadConfig());
+			}
+			else if (loadParam == "LOADRANGE") {
+				// nothing to do
+			}
+			else {
+				schedModified.str(config_m->getSchedulerConfig());
+			}
+		}
+
+		cout << "Scheduling: " << schedModified.str() << " at load: " << wlModified.str() << endl;
+
 		//wlModifed << type << " " << configType << " " << maxN <<  " " << (double)pow(2.0, (double)i)  << " " << mu;
 		//DESLogger * rzLogger = config_m->DESLoggerFactory(ssModifed.str());
 		DESLogger * rzLogger = config_m->DESLoggerFactory(ssModifed.str());
-	
+
 		DES roundZero(
-			config_m->SchedulerFactory(config_m->getSchedulerConfig()),
+			config_m->SchedulerFactory(schedModified.str()),
 			config_m->SpeedScalerFactory(config_m->getSpeedscalerConfig(), config_m->getPowerfunctionConfig()),
-			config_m->WorkloadGeneratorFactory(wlModifed.str()),
+			config_m->WorkloadGeneratorFactory(wlModified.str()),
 			rzLogger,
 			config_m->PowerFunctionFactory(config_m->getPowerfunctionConfig())
 			);
@@ -145,13 +172,54 @@ bool ProbeSetting::runLoad() {
 		double workload_sim_time = roundZero.run();
 		delete rzLogger;
 	}
-	
+
 
 
 	yLog::logtime(Logfile_Type::PROGRESSLOG, __FUNCTION__, "Closing DES: Discrete Event Simulator. Wrapping up...");
 
 	return true;
 }
+
+////----------------------------------------------------------------------
+// TODELETE if the other runLoad implementaion is successfull!
+//bool ProbeSetting::runLoad() {
+//
+//	// Round zero, simulate the workload without the probe.
+//	// First construct to config string to pass to the object factory
+//	stringstream ssConfig, ssModifed;
+//	string type, configType, param1, param2;
+//	ssConfig << config_m->getLoggerConfig();
+//	ssConfig >> type >> configType >> param1 >> param2;
+//	ssModifed << type << " RoundZeroLogger " << param1 << " " << param2;
+//	
+//	for (double i = 0.25; i <= 3; i+= 0.25) {
+//		stringstream wlConfig, wlModifed;
+//		string type, configType, maxN, lambda, mu;
+//		wlConfig << config_m->getWorkloadConfig();
+//		wlConfig >> type >> configType >> maxN >> lambda >> mu;
+//		wlModifed << type << " " << configType << " " << maxN <<  " " << i << " " << mu;
+//		//wlModifed << type << " " << configType << " " << maxN <<  " " << (double)pow(2.0, (double)i)  << " " << mu;
+//		//DESLogger * rzLogger = config_m->DESLoggerFactory(ssModifed.str());
+//		DESLogger * rzLogger = config_m->DESLoggerFactory(ssModifed.str());
+//	
+//		DES roundZero(
+//			config_m->SchedulerFactory(config_m->getSchedulerConfig()),
+//			config_m->SpeedScalerFactory(config_m->getSpeedscalerConfig(), config_m->getPowerfunctionConfig()),
+//			config_m->WorkloadGeneratorFactory(wlModifed.str()),
+//			rzLogger,
+//			config_m->PowerFunctionFactory(config_m->getPowerfunctionConfig())
+//			);
+//
+//		double workload_sim_time = roundZero.run();
+//		delete rzLogger;
+//	}
+//	
+//
+//
+//	yLog::logtime(Logfile_Type::PROGRESSLOG, __FUNCTION__, "Closing DES: Discrete Event Simulator. Wrapping up...");
+//
+//	return true;
+//}
 
 //----------------------------------------------------------------------
 

@@ -114,6 +114,12 @@
     <ClCompile Include="..\..\src\PSE.cpp">
       <Filter>commonsrc</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\CoupledSpeedWith1Addition.cpp">
+      <Filter>commonsrc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\FEST.cpp">
+      <Filter>commonsrc</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\DES.h">
@@ -227,5 +233,14 @@
     <ClInclude Include="..\..\src\PSE.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\CoupledSpeedWith1Addition.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\FEST.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
 </Project>

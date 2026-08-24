@@ -7,10 +7,10 @@
 * Scheduler.h - definitions/declarations for class Scheduler
 *
 *       Written by Maryam Elahi
-*		Last (remembered) updated: Nov 2012
+*		Last (remembered) updated: Oct 2016
 *
 *Purpose:
-*       This file defines the class Scheduler, with its members and methods.
+*       This file defines the abstract class Scheduler, with its members and methods.
 *
 *///---------------------------------------------------------------------
 
