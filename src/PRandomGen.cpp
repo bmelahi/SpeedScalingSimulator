@@ -14,6 +14,7 @@
 
 #include <cstdio>
 #include <cstdlib>
+#include <cmath>
 #include <string>
 #include <iostream>
 #include <random>
@@ -23,7 +24,8 @@
 #include "yLog.h"
 
 using namespace std;
-	
+
+
 //----------------------------------------------------------------------
 
 bool PRandomGen::isFromFile_m = false;
@@ -35,6 +37,13 @@ unsigned int PRandomGen::MAX_RAND_m = RAND_MAX + 1;			// The maximum random numb
 
 std::default_random_engine generator;
 std::uniform_real_distribution<double> distributionUnf(0.0, 1.0);
+std::weibull_distribution<double> PRandomGen::distributionWeibull_m;
+std::lognormal_distribution<double> PRandomGen::distributionLogNormal_m;
+std::default_random_engine PRandomGen::generatorWeibull_m;
+std::default_random_engine PRandomGen::generatorLogNormal_m;
+std::uniform_real_distribution<double> PRandomGen::distributionUninform_m;
+
+// std::lognormal_distribution<double> distributionLog(0.0, 0.5);
 
 //----------------------------------------------------------------------
 
@@ -75,6 +84,18 @@ void PRandomGen::setupGen (unsigned int seed) {
 }
 
 //----------------------------------------------------------------------
+//Sets the distribution parameters for a weibull distribution with log normal estimations
+void PRandomGen::setGeneratorWeibull(double alpha, double beta, double mean, double sd) {
+	distributionWeibull_m = std::weibull_distribution<double> (alpha, beta);
+	distributionLogNormal_m = std::lognormal_distribution<double> (mean, sd);
+	std::weibull_distribution<double>::param_type p = distributionWeibull_m.param();
+	std::lognormal_distribution<double>::param_type q = distributionLogNormal_m.param();
+	printf("%f %f\n", p.a(), p.b());
+	printf("%f %f\n", q.m(), q.s());
+}
+//----------------------------------------------------------------------
+
+//
 
 PRandomGen::~PRandomGen() {
 	if (isFromFile_m)
@@ -162,7 +183,7 @@ double PRandomGen::getExponential(double mean) {
 // Retunrs the next random number from an pareto dist with alpha
 double PRandomGen::getPareto(double alpha) {
 	//double rnd = getUrandFrac();
-	double rnd = distributionUnf(generator);
+	double rnd = distributionUninform_m(generator);
 	while (rnd == 1 || rnd == 0) {
 		//yLog::logtime(ERRORLOG, __FUNCTION__, "getUrandFrac returned %f", rnd);
 		yLog::logtime(DEBUGLOG, __FUNCTION__, "getUrandFrac returned %f", rnd);
@@ -177,4 +198,48 @@ double PRandomGen::getPareto(double alpha) {
 	return xm / pow(rnd, 1.0 / alpha);
 }
 
+//----------------------------------------------------------------------
+
+// Returns the next random number from an Weibull dist with alpha(shape) and beta(scale)
+double PRandomGen::getWeibull() {
+	//double rnd = getUrandFrac();
+	double rnd = distributionWeibull_m(generatorWeibull_m);
+	while (rnd == 1 || rnd == 0) {
+		//yLog::logtime(ERRORLOG, __FUNCTION__, "getUrandFrac returned %f", rnd);
+		yLog::logtime(DEBUGLOG, __FUNCTION__, "getUrandFrac returned %f", rnd);
+		rnd = getUrandFrac();
+	}
+
+	//if (a == 0 || b == 0) {
+	//	yLog::logtime(ERRORLOG, __FUNCTION__, "Zero a or Zero b!");
+	//	return 0;
+	//}
+
+	// if scale parameter b is set as 1, then shape parameter can be varied accordingly
+	// double xm = ((a / b) * pow(rnd / b, a - 1) * exp(-1 * pow(rnd / b, a)));
+	// return xm;
+
+	return rnd;
+
+}
+
+//----------------------------------------------------------------------
+
+// Returns the next random number from an LogNormal dist with mean and sd
+double PRandomGen::getLogNormal() {
+	//double rnd = getUrandFrac();
+	double rnd = distributionLogNormal_m(generatorLogNormal_m);
+	while (rnd == 1 || rnd == 0) {
+		//yLog::logtime(ERRORLOG, __FUNCTION__, "getUrandFrac returned %f", rnd);
+		yLog::logtime(DEBUGLOG, __FUNCTION__, "getUrandFrac returned %f", rnd);
+		rnd = getUrandFrac();
+	}
+
+	//if (sd == 0) {
+	//	yLog::logtime(ERRORLOG, __FUNCTION__, "Zero log!");
+	//	return 0;
+	//}
+	// double xm = 1 / (sd * rnd * pow(2 * M_PI, 1 / 2)) * exp(-1 * (pow(log(rnd) - mean, 2)) / (2 * sd * sd));
+	return rnd;
+}
 //----------------------------------------------------------------------

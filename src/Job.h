@@ -87,12 +87,14 @@
 			arrival_m(arrival),
 			deadline_m(deadline),
 			departure_m(0),
+			//isUnderestimated_m(false),
 			isProbe_m(false),
 			isFinished_m(false),
 			isBeingExecuted_m(false),
 			responsetime_m(0),
 			executiontime_m(0),
-			energyConsumed_m(0)
+			energyConsumed_m(0),
+			sehIndexScore_m(0)
 		{}
 
 //----------------------------------------------------------------------
@@ -135,6 +137,9 @@
 		double responsetime_m;			// Job's response time
 		double executiontime_m;			// The actual time that job received service
 		double energyConsumed_m;		// Job's energy consumption
+
+		double sehIndexScore_m;			// Job's SEH Index score when policy is SEH
+		//bool isUnderestimated_m;		// If the job has been underestimated.
 	};
 
 //----------------------------------------------------------------------

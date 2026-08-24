@@ -152,6 +152,23 @@ Scheduler * Configuration::SchedulerFactory(std::string s) {
 
 	Scheduler * obj = NULL;
 
+	if (type == "PSEPT") {
+		obj = new PSEPT();
+		return obj;
+	}
+	if (type == "SERPT") {
+		obj = new SERPT();
+		return obj;
+	}
+	if (type == "SEPT") {
+		obj = new SEPT();
+		return obj;
+	}
+	
+	if (type == "SEH") {
+		 obj = new SEH();
+		 return obj;
+	}
 	if (type == "SRPT") {
 		obj = new SRPT();
 		return obj;
@@ -335,6 +352,15 @@ WorkloadGenerator * Configuration::WorkloadGeneratorFactory(std::string s) {
 		double arrival, alpha;
 		ss >> maxN >> arrival >> alpha;
 		obj = new WLGenParetoEstimates(arrival, alpha, maxN);
+		return obj;
+	}
+	if (type == "WEIBULL") {
+		unsigned long maxN;
+		double load, alpha, beta, mean, sd;
+		// alpha and beta values are for specifing the shape of the distribution
+		// mean and sd are to generate estimated sizes with log normal error distribution
+		ss >> maxN >> load >> alpha >> beta >> mean >> sd;
+		obj = new WLGenWeibull(load, alpha, beta, mean, sd, maxN);
 		return obj;
 	}
 	//if (type == "") {

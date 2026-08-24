@@ -68,6 +68,7 @@
 			yLog::log(logfile, "%6d \t %10.10f \t %10.10f \t %10.10f \t %10.10f \t %10.10f \t %10.10f \t %10.10f \t %10.10f", 
 				id,
 				job->getSize(),
+				//job->getEstimatedSize(),
 				job->getArrival(),
 				job->departure_m,
 				job->energyConsumed_m,

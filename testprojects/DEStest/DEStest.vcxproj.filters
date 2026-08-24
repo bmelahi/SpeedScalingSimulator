@@ -120,6 +120,21 @@
     <ClCompile Include="..\..\src\FEST.cpp">
       <Filter>commonsrc</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\SEH.cpp">
+      <Filter>commonsrc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\SEPT.cpp">
+      <Filter>commonsrc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\SERPT.cpp">
+      <Filter>commonsrc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\PSEPT.cpp">
+      <Filter>commonsrc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\WLGenWeibull.cpp">
+      <Filter>commonsrc</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\DES.h">
@@ -237,6 +252,21 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\FEST.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\SEH.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\SEPT.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\SERPT.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\PSEPT.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\WLGenWeibull.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -38,6 +38,11 @@
 	#include "SJF.h"
 	#include "FSP.h"
 	#include "PS.h"
+	#include "SEH.h"
+	#include "SEPT.h"
+	#include "SERPT.h"
+	#include "PSEPT.h"
+
 
 	#include "DESLogger.h"
 	#include "BasicLogger.h"
@@ -47,6 +52,7 @@
 	#include "WLGenExponential.h"
 	#include "WLGenPareto.h"
 	#include "WLGenParetoEstimates.h"
+	#include "WLGenWeibull.h"
 	#include "WLGenCustom.h"
 	#include "WLGenBatchExponential.h"
 
