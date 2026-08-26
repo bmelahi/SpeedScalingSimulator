@@ -3,12 +3,12 @@ message: >-
   If you use this software in your research, please cite it using the
   metadata below, and consider citing the related publications listed here
   as well.
-title: "S3: Speed Scaling Simulator (SpeedScalingSimulatorV2.0)"
+title: "S3: Speed Scaling Simulator"
 type: software
 authors:
   - family-names: Elahi
     given-names: Maryam
-repository-code: "https://github.com/bmelahi/SpeedScalingSimulatorV2.0"
+repository-code: "https://github.com/bmelahi/SpeedScalingSimulator"
 license: MIT
 
 references:
