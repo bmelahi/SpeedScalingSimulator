@@ -16,6 +16,8 @@
 
 #include "GlobalsAndTypes.h"
 
+#include <cmath>
+
 using namespace std;
 	
 //----------------------------------------------------------------------
