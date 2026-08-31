@@ -51,11 +51,28 @@ data/
 
 ## Building
 
-S3 is a native C++ project targeting **Windows**, built with **Visual Studio 2022** (`PlatformToolset v143`). It relies on `<Windows.h>` (for output-folder creation and timestamped folder naming), so it does not build as-is on Linux/macOS without adapting those calls.
+S3 is a portable C++17 project. It builds on **Windows, Linux and macOS** — the only platform-specific code it used to have (output-folder creation and timestamped folder naming, via `<Windows.h>`) now goes through `std::filesystem`.
+
+### Windows — Visual Studio (primary)
 
 1. Open `S3Sim22.sln` in Visual Studio 2022.
 2. Build the **DEStest** project under `testprojects/DEStest` — this is the runnable entry point. (The `S3Sim` project's `main()` is currently a minimal scaffold left over from an in-progress refactor and does not run a full simulation; use `DEStest`.)
 3. Run the built executable from a working directory that contains a `Config.txt` file (see below) and a `data/` folder alongside it.
+
+### Linux, macOS — and Windows — with CMake
+
+A `CMakeLists.txt` at the repository root builds the same sources with any C++17 compiler (GCC 9+, Clang 9+, MSVC 2019+):
+
+```sh
+cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+cmake --build build
+```
+
+This produces `DEStest` (the runnable driver) and `PRandTest`. Run `DEStest` from a directory containing a `config.txt`; a copy is placed next to the binary at configure time to get you started.
+
+The `PATH` directive in `config.txt` accepts either `/` or `\` as a separator on every platform — forward slashes are used in the shipped file because they work everywhere.
+
+> The Visual Studio solution and `CMakeLists.txt` compile exactly the same source files and produce **identical** simulation output; verified by byte-comparing every result file from the two builds on the same configuration.
 
 ## Configuring a run
 

@@ -36,7 +36,7 @@ string WorkloadFileWrapper::name_s = "WorkloadFileWrapper";
 
 WorkloadFileWrapper::WorkloadFileWrapper(std::string filename, unsigned long maxN) {
 	maxN_m = maxN;
-	filename_m = string("..\\\\..\\\\inputs\\\\") + filename;
+	filename_m = string("../../inputs/") + filename;
 	wlfile_m.open(filename_m);
 	if (!wlfile_m.fail())
 		yLog::logtime(DEBUGLOG, __FUNCTION__, "Opened input workload file: %s", filename_m.c_str());

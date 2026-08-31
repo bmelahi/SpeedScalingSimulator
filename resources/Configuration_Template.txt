@@ -27,7 +27,7 @@
 % PROBES	ROUNDS		STEP		SMALLEST	LARGEST
 % <blank line>
 %--------------------------------------------------------------------------
-PATH		..\\..\\data\\
+PATH		../../data/
 SCHEDULER	PS
 SPEEDSCALER	ShadowSpeed	SRPT		1
 POWERFUNCTION	ALPHA		3

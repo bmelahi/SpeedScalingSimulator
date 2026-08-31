@@ -28,7 +28,7 @@
 #include <cstdlib>
 #include <iostream>
 #include <algorithm>
-#include <Windows.h>
+#include <filesystem>
 
 using namespace std;
 
@@ -45,13 +45,19 @@ BasicLogger::BasicLogger(string debugmode, std::string writemode, string path, s
 	inPromptMode_m = (writemode == "PROMTWRITE")? true : false;
 
 	// Set simulation folder name
-	wchar_t * outputFolder = new wchar_t[100];
-	setSimulationFolderNameByTime(path, outputFolder, simName);			
-	wprintf(L"Creating the simulation results folder at: \"%ls\"\n", outputFolder);
+	string outputFolder = simulationFolderNameByTime(path, simName);
+	cout << "Creating the simulation results folder at: \"" << outputFolder << "\"" << endl;
 
-	// Create simulation folder and set default path
-	if (CreateDirectory((LPCWSTR)outputFolder, NULL)) {
-		_wchdir(outputFolder);
+	// Create simulation folder and set default path.
+	// create_directories returns false when the folder already exists, which preserves
+	// the refuse-to-reuse behaviour the Win32 CreateDirectory call had.
+	std::error_code ec;
+	if (std::filesystem::create_directories(outputFolder, ec) && !ec) {
+		std::filesystem::current_path(outputFolder, ec);
+		if (ec) {
+			cout << "Failed to enter the simulation results folder!" << endl;
+			return;
+		}
 	} else {
 		 cout << "Failed to create the simulation results folder!" << endl;
 		 return;
@@ -88,13 +94,27 @@ BasicLogger::~BasicLogger() {
 	
 //----------------------------------------------------------------------
 
-void BasicLogger::setSimulationFolderNameByTime(string path, wchar_t * outputFolder, string simName) {
+string BasicLogger::simulationFolderNameByTime(string path, string simName) {
 	time_t ut;
 	time (&ut);
 	tm * ts = gmtime (&ut);
-	path = path + string("outputs\\\\") + simName;
-	wsprintf(outputFolder, L"%S%04d-%02d-%02d--%02dH%02dM%02dS", path.c_str(),
+
+	// The configured PATH may use either separator. Normalise to '/', which every
+	// supported platform accepts, and collapse the runs of repeated separators that
+	// the shipped config.txt has always carried.
+	replace(path.begin(), path.end(), '\\', '/');
+	string norm;
+	for (size_t i = 0; i < path.size(); i++)
+		if (!(path[i] == '/' && !norm.empty() && norm.back() == '/'))
+			norm += path[i];
+	if (!norm.empty() && norm.back() != '/')
+		norm += '/';
+
+	char stamp[32];
+	snprintf(stamp, sizeof(stamp), "%04d-%02d-%02d--%02dH%02dM%02dS",
 			1900 + ts->tm_year, ts->tm_mon + 1, ts->tm_mday, ts->tm_hour, ts->tm_min, ts->tm_sec);
+
+	return norm + "outputs/" + simName + string(stamp);
 }
 
 //----------------------------------------------------------------------

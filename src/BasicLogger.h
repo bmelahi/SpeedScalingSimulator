@@ -42,7 +42,7 @@
 									   double time2
 									   );
 	private:
-		void setSimulationFolderNameByTime(std::string path, wchar_t * outputFolder, string simName);
+		std::string simulationFolderNameByTime(std::string path, string simName);
 
 	private:
 		static std::string name_s;

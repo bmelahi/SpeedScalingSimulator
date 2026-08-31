@@ -37,7 +37,7 @@
 % PROBES	ROUNDS		STEP		SMALLEST	LARGEST
 % <blank line>
 %--------------------------------------------------------------------------
-PATH		..\\..\\data\\
+PATH		../../data/
 SCHEDULER	FCFS		 		
 SPEEDSCALER	SingleSpeed	1		1
 POWERFUNCTION	ALPHA		2

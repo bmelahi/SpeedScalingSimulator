@@ -12,7 +12,6 @@
 #pragma warning( disable : 4482 )
 #pragma warning( disable : 4996 )
 
-#include <Windows.h>
 
 #include <map>
 #include <set>
